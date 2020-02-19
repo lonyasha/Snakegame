@@ -8,6 +8,7 @@ const CELL_MARGIN = 3
 const GAME_PADDING = 5
 
 const FOOD_COLOR = 'green'
+const POISON_COLOR = 'yellow'
 const SNAKE_COLOR = 'black'
 const FREE_COLOR = 'rgb(240, 240, 240)'
 
@@ -20,6 +21,8 @@ canvas.height = CELL_SIZE * ROWS + (ROWS - 1) * CELL_MARGIN + 2 * GAME_PADDING
 let map = creatGameMap(COLUMNS, ROWS)
 
 getRandomFreeCell(map).food = true
+
+getRandomFreeCell(map).poison = true
 
 const cell = getRandomFreeCell(map)
 let snake = [cell]
@@ -56,6 +59,10 @@ function loop(timestamp) {
       getRandomFreeCell(map).food = true
       cooldown += LEVEL_COOLDOWN
     } 
+    else if (head.poison) {
+      head.poison = false
+      play = false
+    }
     else {
       let isEnd = false
       for (let i = 1; i < snake.length; i++) {

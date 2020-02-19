@@ -18,7 +18,8 @@ function creatGameMap(columns, rows) {
         x: x,
         y: y,
         snake: false,
-        food: false
+        food: false,
+        poison: false
       })
     }
     map.push(row)
@@ -29,7 +30,7 @@ function creatGameMap(columns, rows) {
 function getRandomFreeCell(map) {
   const freeCells = []
   for (const cell of map.flat()) {
-    if (cell.snake || cell.food) {
+    if (cell.snake || cell.food || cell.poison) {
       continue
     }
     freeCells.push(cell)
@@ -49,6 +50,9 @@ function drawGameMap(map) {
     }
     if (cell.food) {
       param.fillColor = FOOD_COLOR
+    }
+    if (cell.poison) {
+      param.fillColor = POISON_COLOR
     }
     if (cell.snake) {
       param.fillColor = SNAKE_COLOR
@@ -124,6 +128,7 @@ function drawPaused() {
 function init() {
   map = creatGameMap(COLUMNS, ROWS)
   getRandomFreeCell(map).food = true
+  getRandomFreeCell(map).poison = true
 
   const cell = getRandomFreeCell(map)
   snake = [cell]
