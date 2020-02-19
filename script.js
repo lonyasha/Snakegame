@@ -61,7 +61,11 @@ function loop(timestamp) {
     } 
     else if (head.poison) {
       head.poison = false
-      play = false
+      snake.pop(tail)
+      getRandomFreeCell(map).poison = true;
+      if(snake.length === 0) {
+          play = false;
+      }
     }
     else {
       let isEnd = false
