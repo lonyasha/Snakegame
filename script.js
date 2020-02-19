@@ -58,16 +58,16 @@ function loop(timestamp) {
 
       getRandomFreeCell(map).food = true
       cooldown += LEVEL_COOLDOWN
-    } 
-    else if (head.poison) {
+    } else if (head.poison) {
       head.poison = false
       snake.pop(tail)
+
       getRandomFreeCell(map).poison = true;
-      if(snake.length === 0) {
-          play = false;
+
+      if (snake.length === 0) {
+        play = false;
       }
-    }
-    else {
+    } else {
       let isEnd = false
       for (let i = 1; i < snake.length; i++) {
         if (snake[i] === snake[0]) {
@@ -78,7 +78,7 @@ function loop(timestamp) {
       if (isEnd) {
         play = false
       }
-    }  
+    }
   }
 
   drawGameMap(map)
