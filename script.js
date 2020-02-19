@@ -62,9 +62,9 @@ function loop(timestamp) {
       head.poison = false
       snake.pop(tail)
 
-      getRandomFreeCell(map).poison = true;
+      getRandomFreeCell(map).poison = true
 
-      if (snake.length === 0) {
+      if (snake[i] === snake[0]) {
         play = false;
       }
     } else {
